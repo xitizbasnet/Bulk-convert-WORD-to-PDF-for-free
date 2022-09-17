@@ -21,28 +21,47 @@ var pdfPath = docPath.replace(/\.doc[^.]*$/, ".pdf");
 var objWord = null;
 
 try
+
 {
+
     objWord = new ActiveXObject("Word.Application");
-    objWord.Visible = false;
-    var objDoc = objWord.Documents.Open(docPath);
-    var format = 17;
-    objDoc.SaveAs(pdfPath, format);
-    objDoc.Close();
-    WScript.Echo("Saving '" + docPath + "' as '" + pdfPath + "'...");
+
+objWord.Visible = false;
+
+var objDoc = objWord.Documents.Open(docPath);
+
+var format = 17;
+
+objDoc.SaveAs(pdfPath, format);
+
+objDoc.Close();
+
+WScript.Echo("Saving '" + docPath + "' as '" + pdfPath + "'...");
+
 }
+
 finally
+
 {
-    if (objWord != null)
-    {
-        objWord.Quit();
-    }
+
+if (objWord != null)
+
+{
+
+objWord.Quit();
+
+}
+
 }
 
 Step 3: Create Batch file to bulk convert Word to PDF
 Open notepad or notepad++ and copy the following code. Save the file with “.bat” extension say “bulk-convert-Word2PDF.bat” in folder “fldr”.
 
+
 echo off
+
 for %%X in (*.docx) do cscript.exe //nologo SaveAsPDF.js "%%X"
+
 for %%X in (*.doc) do cscript.exe //nologo SaveAsPDF.js "%%X"
 
 Step 4: Running Batch file
