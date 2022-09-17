@@ -11,10 +11,13 @@ Open notepad/notepad++ and copy the following code and save file as “SaveAsPDF
 Following code converts Word document to PDF file.
 
 var obj = new ActiveXObject("Scripting.FileSystemObject");
+
 var docPath = WScript.Arguments(0);
+
 docPath = obj.GetAbsolutePathName(docPath);
 
 var pdfPath = docPath.replace(/\.doc[^.]*$/, ".pdf");
+
 var objWord = null;
 
 try
